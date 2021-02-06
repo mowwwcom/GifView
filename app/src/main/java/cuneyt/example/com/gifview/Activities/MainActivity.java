@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.cunoraz.gifview.library.GifView;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     private Button fragmentButton;
     private GifView gifView;
     private int index = 0;
+    LinearLayout mGifLayout;
+    final int[] mGifResId = {R.mipmap.gif2, R.mipmap.gif3, R.mipmap.gif4, R.mipmap.gif5, R.mipmap.gif6, R.mipmap.gif7,  R.mipmap.gif8,  R.mipmap.gif9};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         dialogButton = findViewById(R.id.button_dialog);
         fragmentButton = findViewById(R.id.fragment);
         toastButton = findViewById(R.id.toast);
+        mGifLayout = findViewById(R.id.linearLayout);
+        for (int i = 0; i < mGifResId.length; ++i) {
+            GifView gifView = new GifView(this);
+            gifView.setGifResource(mGifResId[i]);
+            gifView.setPaused(false);
+//            gifView.play();
+            mGifLayout.addView(gifView);
+        }
 
 
         fragmentButton.setOnClickListener(new OnClickListener() {
